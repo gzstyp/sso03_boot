@@ -1,0 +1,5 @@
+server:
+  port: 8080
+  servlet:
+    #必须要添加这个值???否则跳转有问题?!!
+    context-path: /sso

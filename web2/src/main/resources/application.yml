@@ -1,0 +1,15 @@
+server:
+  port: 8087
+security:
+  oauth2:
+    client:
+      client-id: ben2
+      client-secret: 123456
+      #登录认证接口路径
+      user-authorization-uri: http://localhost:8080/sso/oauth/authorize
+      #访问token的路径
+      access-token-uri: http://localhost:8080/sso/oauth/token
+    resource:
+      jwt:
+        #获取token的路径
+        key-uri: http://localhost:8080/sso/oauth/token_key
