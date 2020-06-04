@@ -17,8 +17,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 认证服务器
- * @author jinbin
- * @date 2019-05-20 20:23
 */
 @Configuration
 @EnableAuthorizationServer
@@ -52,7 +50,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             .scopes("all")
             .autoApprove(true)
             //加上验证后回调地址???若是客户端不填写的话,那就是事先访问的url认证后跳转到原访问的URL,如不添加会报错->error="invalid_request", error_description="At least one redirect_uri must be registered with the client."
-            .redirectUris("http://localhost:8086/login")//这个是和authorization_code一起使用的
+            .redirectUris("http://localhost:8086/login")//这个是和authorization_code一起使用的,这个不能少!
             .and()//第2个子系统
             .withClient("ben2")
             .secret(new BCryptPasswordEncoder().encode("123456"))
@@ -60,7 +58,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             .authorizedGrantTypes("authorization_code", "refresh_token","password")
             .scopes("all")
             .autoApprove(true)
-            .redirectUris("http://localhost:8087/login");//这个是和authorization_code一起使用的
+            .redirectUris("http://localhost:8087/login");//这个是和authorization_code一起使用的,这个不能少!
     }
 
     //从(认证)资源服务器获取token是需要认证成功之后才能获取(这里配置意思是带入自己的appid和appsecuret)进行验证
@@ -76,7 +74,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter(){
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey("testKey");//密钥密盐
         return converter;
     }

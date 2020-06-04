@@ -4,10 +4,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author jinbin
- * @date 2019-05-20 20:35
- */
+
 @RestController
 public class ClientController {
 
